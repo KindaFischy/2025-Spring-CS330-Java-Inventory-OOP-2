@@ -46,7 +46,13 @@ public class Armour extends Item {
      */
     public Armour()
     {
-
+        this.name = "";
+        this.durability = 0;
+        this.defense = 0;
+        this.material = "";
+        this.modifier = "";
+        this.modifierLevel = 0;
+        this.element = "";
     }
 
     /**
@@ -56,7 +62,13 @@ public class Armour extends Item {
      */
     public Armour(Armour src)
     {
-
+        this.name = src.name;
+        this.durability = src.durability;
+        this.defense = src.defense;
+        this.material = src.material;
+        this.modifier = src.modifier;
+        this.modifierLevel = src.modifierLevel;
+        this.element = src.element;
     }
 
     /**
@@ -191,7 +203,15 @@ public class Armour extends Item {
     @Override
     public void read(Scanner snr)
     {
-
+        // Armour Boots Diamond 100 10 Protection 3 lightning
+        // name, material, durability, defense, modifier, modifier level, and element
+        this.name = snr.next();
+        this.material = snr.next();
+        this.durability = snr.nextInt();
+        this.defense = snr.nextInt();
+        this.modifier = snr.next();
+        this.modifierLevel = snr.nextInt();
+        this.element = snr.next();
     }
 
     /**
@@ -219,7 +239,10 @@ public class Armour extends Item {
         Armour rhsItem = (Armour) rhs;
 
         // Replace the next line
-        return false;
+        // Armour Boots Diamond 100 10 Protection 3 lightning
+        // name, material, durability, defense, modifier, modifier level, and element
+        return this.name.equals(rhsItem.name) && this.material.equals(rhsItem.material)
+                && this.modifier.equals(rhsItem.modifier) && this.element.equals(rhsItem.element);
     }
 
     /**
@@ -229,7 +252,7 @@ public class Armour extends Item {
     @Override
     public int hashCode()
     {
-        return -1;
+        return name.hashCode() + material.hashCode() + modifier.hashCode() + element.hashCode();
     }
 
     /**
@@ -238,7 +261,14 @@ public class Armour extends Item {
     @Override
     public String toString()
     {
-        return "";
+        return String.format(
+            "  Nme: %s%n" +
+            "  Dur: %d%n" +
+            "  Def: %d%n" +
+            "  Mtl: %s%n" +
+            "  Mdr: %s (Lvl %d)%n" +
+            "  Emt: %s%n", this.name, this.durability, this.defense, this.material, this.modifier, this.modifierLevel, this.element
+        );
     }
 }
 

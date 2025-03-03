@@ -57,7 +57,12 @@ public class Tool extends Item {
      */
     public Tool(Tool src)
     {
-
+        this.name = src.name;
+        this.durability = src.durability;
+        this.speed = src.speed;
+        this.material = src.material;
+        this.modifier = src.modifier;
+        this.modifierLevel = src.modifierLevel;
     }
 
     /**
@@ -172,7 +177,14 @@ public class Tool extends Item {
     @Override
     public void read(Scanner snr)
     {
-        // Complete this method
+        // name, material, durability, speed, modifier, and modifier level
+        // Tool Pickaxe Diamond 100 1 Fortune 5
+        this.name = snr.next();
+        this.material = snr.next();
+        this.durability = snr.nextInt();
+        this.speed = snr.nextInt();
+        this.modifier = snr.next();
+        this.modifierLevel = snr.nextInt();
     }
 
     /**
@@ -199,7 +211,7 @@ public class Tool extends Item {
         Tool rhsItem = (Tool) rhs;
 
         // Replace the next line
-        return false;
+        return this.name.equals(rhsItem.name) && this.material.equals(rhsItem.material) && this.modifier.equals(rhsItem.modifier);
     }
 
     /**
@@ -220,6 +232,21 @@ public class Tool extends Item {
     @Override
     public String toString()
     {
-        return "";
+        return String.format(
+            "  Nme: %s%n" +
+            "  Dur: %s%n" +
+            "  Spd: %d%n" +
+            "  Mtl: %s%n" +
+            "  Mdr: %s (Lvl %d)%n", this.name, this.durability, this.speed, this.material, this.modifier, this.modifierLevel
+        );
     }
+    
+
+    /*
+     *  Nme: Pickaxe
+        Dur: 100
+        Spd: 1
+        Mtl: Diamond
+        Mdr: Fortune (Lvl 5)
+     */
 }
